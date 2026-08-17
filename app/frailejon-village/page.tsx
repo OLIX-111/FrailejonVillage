@@ -2,6 +2,16 @@
 
 import { useState, useEffect } from 'react'
 
+const amenSliderImages = [
+  { src: '/sillasfrailejon.avif',  alt: 'Sillas Frailejón Village' },
+  { src: '/Campo%20de%20golf%201.jpeg',           alt: 'Campo de golf 1' },
+  { src: '/campo%20de%20golf%20soleado.jpg.jpeg', alt: 'Campo de golf soleado' },
+  { src: '/entrenamiento.jpg',                    alt: 'Área de entrenamiento' },
+  { src: '/recepcion.webp',                                      alt: 'Recepción' },
+  { src: '/atardecer%20sobre%20el%20campo%20de%20golf.jpg', alt: 'Atardecer sobre el campo de golf' },
+  { src: '/foto%20sobre%20el%20lago%202.jpg',              alt: 'Foto sobre el lago 2' },
+]
+
 const sliderImages = [
   { src: '/1.jpg', alt: 'Villa exterior con piscina' },
   { src: '/4.jpg', alt: 'Terraza con vista al jardín' },
@@ -12,12 +22,20 @@ const sliderImages = [
 
 export default function FrailejonVillagePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [amenSlide, setAmenSlide] = useState(0)
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % sliderImages.length)
     }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAmenSlide(prev => (prev + 1) % amenSliderImages.length)
+    }, 3500)
     return () => clearInterval(timer)
   }, [])
 
@@ -252,9 +270,21 @@ export default function FrailejonVillagePage() {
                 ))}
               </div>
             </div>
-            <div style={{ display:'flex', justifyContent:'flex-end' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/fachada.jpg" alt="Fachada Frailejón Village con piscina y jardín tropical" onClick={() => open('/fachada.jpg', 'Fachada Frailejón Village con piscina y jardín tropical')} style={{ width:'100%', maxWidth:600, height:600, objectFit:'cover', borderRadius:'0.5rem', cursor:'zoom-in' }} />
+            <div style={{ position:'relative', height:600, borderRadius:'0.5rem', overflow:'hidden' }}>
+              <div style={{ display:'flex', transform:`translateX(-${amenSlide * 100}%)`, transition:'transform 0.5s ease-in-out', height:'100%' }}>
+                {amenSliderImages.map((img, i) => (
+                  <div key={i} style={{ width:'100%', height:'100%', flexShrink:0 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.src} alt={img.alt} onClick={() => open(img.src, img.alt)} style={{ width:'100%', height:'100%', objectFit:'cover', cursor:'zoom-in' }} />
+                  </div>
+                ))}
+              </div>
+              <div style={{ position:'absolute', bottom:'1rem', left:'50%', transform:'translateX(-50%)', display:'flex', gap:'0.5rem' }}>
+                {amenSliderImages.map((_, i) => (
+                  <button key={i} onClick={() => setAmenSlide(i)}
+                          style={{ width:10, height:10, borderRadius:'50%', border:'none', cursor:'pointer', background: i === amenSlide ? '#fff' : 'rgba(255,255,255,0.4)', transition:'background 0.2s' }} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -273,9 +303,9 @@ export default function FrailejonVillagePage() {
           </h2>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'2rem' }}>
             {[
-              { src:'/1.jpg', name:'Frailejón Golf Platinum', beds:4, baths:4, area:'376 m²' },
-              { src:'/5.jpg', name:'Frailejón Standard Golf', beds:3, baths:3, area:'250 m²' },
-              { src:'/6.jpg', name:'Frailejón Golf Premium',  beds:3, baths:3, area:'345 m²' },
+              { src:'/1.jpg',                    name:'Frailejón Golf Platinum', beds:4, baths:4, area:'376 m²' },
+              { src:'/fachada.jpg',              name:'Frailejón Standard Golf', beds:3, baths:3, area:'250 m²' },
+              { src:'/6.jpg',                    name:'Frailejón Golf Premium',  beds:3, baths:3, area:'345 m²' },
             ].map(card => (
               <div key={card.name} className="prop-card">
                 <div style={{ position:'relative' }}>
