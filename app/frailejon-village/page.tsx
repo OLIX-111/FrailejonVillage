@@ -124,21 +124,19 @@ export default function FrailejonVillagePage() {
       {/* INTRO */}
       <section style={{ background:'#121212', padding:'5rem 1rem' }}>
         <div className="containerl" style={{ paddingLeft:'4rem', paddingRight:'4rem', textAlign:'center' }}>
-          <p style={{ color:'#fff', fontSize:'clamp(1.1rem,2.5vw,2rem)', lineHeight:1.7, fontWeight:500 }}>
+          <p style={{ color:'#fff', fontSize:'clamp(1.1rem,2.5vw,2rem)', lineHeight:1.7, fontWeight:500, marginBottom:'3rem' }}>
             Descubre una comunidad única de villas de lujo ubicadas en La Estancia Golf &amp; Country Club,
             donde el diseño minimalista tropical y el entorno paradisíaco se combinan para ofrecerte un estilo
             de vida incomparable.
           </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/atardecer.jpg" alt="Frailejón Village villas con jardín tropical" onClick={() => open('/atardecer.jpg', 'Frailejón Village')} style={{ width:'100%', maxHeight:580, objectFit:'cover', borderRadius:'0.5rem', cursor:'zoom-in' }} />
         </div>
       </section>
 
       {/* REFUGIO NATURAL */}
       <section style={{ background:'#121212', marginBottom:'2.5rem' }}>
         <div className="containerl" style={{ padding:'0 4rem' }}>
-          <div style={{ maxHeight:580, overflow:'hidden', borderRadius:'0.5rem', marginBottom:'2rem' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/campo.jpg" alt="Campo de golf La Estancia con lago y palmeras" onClick={() => open('/campo.jpg', 'Campo de golf La Estancia con lago y palmeras')} style={{ width:'100%', height:'auto', objectFit:'cover', cursor:'zoom-in' }} />
-          </div>
           <div style={{ padding:'4rem 0' }}>
             <h2 style={{ color:'#fff', fontSize:'clamp(1.8rem,4vw,3.5rem)', fontWeight:300, marginBottom:'2rem', lineHeight:1.2 }}>
               Un Refugio Natural en La Estancia Golf &amp; Country Club
