@@ -17,7 +17,6 @@ const sliderImages = [
   { src: '/4.jpg', alt: 'Terraza con vista al jardín' },
   { src: '/5.jpg', alt: 'Villa exterior con escaleras' },
   { src: '/6.jpg', alt: 'Interior sala con ventanales' },
-  { src: '/campo.jpg', alt: 'Campo de golf La Estancia' },
 ]
 
 export default function FrailejonVillagePage() {
@@ -303,9 +302,8 @@ export default function FrailejonVillagePage() {
           </h2>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'2rem' }}>
             {[
-              { src:'/1.jpg',                    name:'Frailejón Golf Platinum', beds:4, baths:4, area:'376 m²' },
               { src:'/fachada.jpg',              name:'Frailejón Standard Golf', beds:3, baths:3, area:'250 m²' },
-              { src:'/6.jpg',                    name:'Frailejón Golf Premium',  beds:3, baths:3, area:'345 m²' },
+              { src:'/1.jpg',                    name:'Frailejón Golf Premium',  beds:3, baths:3, area:'345 m²' },
             ].map(card => (
               <div key={card.name} className="prop-card">
                 <div style={{ position:'relative' }}>
@@ -372,8 +370,8 @@ export default function FrailejonVillagePage() {
                 cita con nuestro equipo.
               </p>
               <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem', color:'#d1d5db', marginBottom:'2rem' }}>
-                <div><span style={{ color:'#fff', fontWeight:600 }}>Teléfono:</span> (829) 222-2484</div>
-                <div><span style={{ color:'#fff', fontWeight:600 }}>Correo Electrónico:</span> info@romanarealestate.com</div>
+                <div><span style={{ color:'#fff', fontWeight:600 }}>Teléfono:</span> +1 (484) 473-1113</div>
+                <div><span style={{ color:'#fff', fontWeight:600 }}>Correo Electrónico:</span> info@lromanarealstate.com</div>
                 <div><span style={{ color:'#fff', fontWeight:600 }}>Dirección:</span> Reparto Torres Calle 4ta #5. La Romana. República Dominicana.</div>
               </div>
               <form style={{ display:'flex', flexDirection:'column', gap:'1.5rem' }}>
