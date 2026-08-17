@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frailejón Village – L'Romana Real Estate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: '#bee301',
+            dark: '#121212',
+            card: '#222222',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Custom resets & utilities ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #121212; color: #fff; font-family: ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* Contenedor con max-width centrado */
+    .containerl { max-width: 1400px; margin-left: auto; margin-right: auto; }
+
+    /* Hero full-screen */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    /* Slider */
+    .slider-track { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+    .slider-slide { width: 100%; height: 100%; flex-shrink: 0; }
+    .slider-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .slider-dot { width: 12px; height: 12px; border-radius: 50%; border: none; cursor: pointer; transition: background 0.2s; }
+    .slider-dot.active { background: #fff; }
+    .slider-dot.inactive { background: rgba(255,255,255,0.4); }
+
+    /* Checkmark list item */
+    .check-item { display: flex; align-items: center; gap: 1rem; }
+    .check-circle {
+      width: 32px; height: 32px;
+      background: #bee301;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Property card */
+    .prop-card { background: #222; border-radius: 0.5rem; padding: 1.25rem; overflow: hidden; }
+    .prop-card img { width: 100%; border-radius: 4px; height: 276px; object-fit: cover; }
+    .badge-accent { background: #bee301; color: #000; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.875rem; font-weight: 600; display: inline-block; }
+    .badge-sale { position: absolute; top: 1rem; left: 1rem; }
+    .price-pill { background: #bee301; color: #000; border-radius: 9999px; padding: 0.2rem 0.75rem; font-weight: 600; display: inline-block; }
+
+    /* Why-choose icon */
+    .why-icon { background: #bee301; border-radius: 0.75rem; padding: 0.75rem; flex-shrink: 0; display: flex; }
+
+    /* Nearby cards */
+    .nearby-card { position: relative; overflow: hidden; aspect-ratio: 1 / 1; }
+    .nearby-card img { width: 100%; height: 100%; object-fit: cover; }
+    .nearby-overlay { position: absolute; inset: 0; background: linear-gradient(rgba(190,227,1,0) 0%, rgba(190,227,1,0.5) 100%); }
+    .nearby-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; }
+
+    /* Form inputs */
+    .form-input {
+      width: 100%; padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      background: #fff; color: #000;
+      border: none; outline: none;
+    }
+    .form-input:focus { box-shadow: 0 0 0 2px #bee301; }
+    .form-input::placeholder { color: #6b7280; }
+
+    /* Footer */
+    footer { background: #030712; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER / NAV
+══════════════════════════════════════════════════════ -->
+<header style="position:fixed;top:0;width:100%;z-index:50;border-bottom:1px solid transparent;background:transparent;">
+  <div class="containerl" style="padding:0 4rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 0;">
+      <a href="/">
+        <img src="https://www.lromanarealestate.com/alt_lromana_real_estate_la_romana_grupochavon.png"
+             alt="L'Romana Real Estate" style="height:48px;width:auto;object-fit:contain;" />
+      </a>
+      <nav style="display:flex;align-items:center;gap:2rem;font-size:0.95rem;">
+        <span style="color:#fff;cursor:pointer;">Proyectos ▾</span>
+        <a href="https://propiedades.lromanarealestate.com/" style="color:#fff;text-decoration:none;">Propiedades</a>
+        <a href="/agentes" style="color:#fff;text-decoration:none;">Agentes</a>
+        <a href="/about" style="color:#fff;text-decoration:none;">Sobre Nosotros</a>
+        <a href="https://propiedades.lromanarealestate.com/contactos" style="color:#fff;text-decoration:none;">Contacto</a>
+      </nav>
+      <a href="https://propiedades.lromanarealestate.com/" target="_blank" rel="noopener noreferrer"
+         style="background:#1e63b5;color:#fff;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;font-size:0.875rem;font-weight:500;">
+        Empezar Búsqueda
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 1: HERO
+══════════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <img class="hero-bg"
+       src="https://www.lromanarealestate.com/home/frailejonplatinum.jpg"
+       alt="Casa moderna con piscina y palmeras" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div style="text-align:center;max-width:900px;margin:0 auto;">
+      <h1 style="font-size:clamp(2rem, 5vw, 4rem);font-weight:600;color:#fff;margin-bottom:2rem;line-height:1.2;">
+        Descubre el Hogar Donde Tus Sueños Cobran Vida
+      </h1>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+        <a href="#modelos">
+          <button style="background:#bee301;color:#000;font-weight:600;padding:1rem 2rem;border:none;border-radius:4px;cursor:pointer;min-width:200px;font-size:1rem;">
+            Explorar Modelos
+          </button>
+        </a>
+        <a href="#contact">
+          <button style="background:#000;color:#fff;font-weight:600;padding:1rem 2rem;border:1px solid #fff;border-radius:4px;cursor:pointer;min-width:200px;font-size:1rem;">
+            Solicitar Más Información
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 2: INTRO TEXTO
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;padding:5rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;text-align:center;">
+    <p style="color:#fff;font-size:clamp(1.1rem,2.5vw,2rem);line-height:1.7;font-weight:500;">
+      Descubre una comunidad única de villas de lujo ubicadas en La Estancia Golf &amp; Country Club,
+      donde el diseño minimalista tropical y el entorno paradisíaco se combinan para ofrecerte un estilo
+      de vida incomparable.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 3: REFUGIO NATURAL
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;margin-bottom:2.5rem;">
+  <div class="containerl" style="padding:0 4rem;">
+    <div style="max-height:580px;overflow:hidden;border-radius:0.5rem;margin-bottom:2rem;">
+      <img src="https://www.lromanarealestate.com/frailejon/campogolffreile.avif"
+           alt="Campo de golf La Estancia con lago y palmeras"
+           style="width:100%;height:auto;object-fit:cover;" />
+    </div>
+    <div style="padding:4rem 0;">
+      <h2 style="color:#fff;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;margin-bottom:2rem;line-height:1.2;">
+        Un Refugio Natural en La Estancia Golf &amp; Country Club
+      </h2>
+      <p style="color:#d1d5db;font-size:1.1rem;line-height:1.8;font-weight:300;max-width:900px;">
+        Ubicado en el corazón de la exclusiva comunidad de La Estancia, Frailejón Village ofrece un entorno
+        que fusiona naturaleza y sofisticación. Rodeado por la exuberante vegetación de la región y con vistas
+        panorámicas al majestuoso río Chavón, este destino es un santuario para quienes buscan equilibrio entre
+        el lujo y la tranquilidad. La Estancia es más que un residencial, es una experiencia de vida que se
+        complementa con un campo de golf de clase mundial, senderos naturales y un ambiente diseñado para el
+        descanso absoluto.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 4: ESTILO DE VIDA
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;margin-bottom:2.5rem;padding:4rem 0;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="margin-bottom:3rem;border-radius:0.5rem;overflow:hidden;">
+      <img src="https://www.lromanarealestate.com/frailejon/sillasfrailejon.avif"
+           alt="Campo de golf con sillas blancas y vista al lago"
+           style="width:100%;height:auto;object-fit:cover;" />
+    </div>
+    <h2 style="color:#fff;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:300;margin-bottom:2rem;line-height:1.2;">
+      Un Estilo de Vida Exclusivo con Conexión a Todo
+    </h2>
+    <p style="color:#d1d5db;font-size:1.1rem;line-height:1.8;max-width:900px;">
+      Frailejón Village goza de una ubicación privilegiada a solo minutos de algunos de los destinos más
+      emblemáticos del Caribe. A pocos minutos del Aeropuerto Internacional de La Romana, y con acceso a
+      playas paradisíacas como Bayahibe e Isla Saona, los residentes pueden disfrutar de la brisa marina y
+      arenas blancas en cualquier momento. Además, la cercanía con Casa de Campo y el icónico Altos de Chavón
+      brinda una oferta cultural y gastronómica de primer nivel, asegurando que cada día esté lleno de nuevas
+      experiencias.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 5: INVERSIÓN
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;padding:5rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:3rem;">
+      <div style="flex:1;min-width:280px;">
+        <img src="https://www.lromanarealestate.com/home/frailejonplatinum.jpg"
+             alt="Casa moderna con piscina en Frailejón Village"
+             style="width:100%;height:500px;object-fit:cover;border-radius:4px;" />
+      </div>
+      <div style="flex:1;min-width:280px;color:#fff;">
+        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:300;margin-bottom:2rem;line-height:1.2;">
+          Una Inversión que Crece Contigo
+        </h2>
+        <p style="color:#d1d5db;font-size:1.1rem;line-height:1.8;">
+          Ubicado en el exclusivo Estancia Golf &amp; Country Club, Frailejón Village redefine el lujo en La
+          Romana. Este proyecto residencial combina diseño minimalista tropical con espacios amplios y amenidades
+          premium para ofrecerte un estilo de vida inigualable en armonía con la naturaleza.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 6: ¿POR QUÉ ELEGIR?
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;padding:5rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:start;">
+
+      <!-- Título izq -->
+      <div>
+        <h2 style="color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:600;margin-bottom:1.5rem;line-height:1.2;">
+          ¿Por Qué Elegir Frailejón Village?
+        </h2>
+        <p style="color:#9ca3af;font-size:1.2rem;line-height:1.6;">
+          Descubre las razones que hacen de Frailejón Village el lugar ideal para vivir o invertir.
+        </p>
+      </div>
+
+      <!-- Razones der -->
+      <div style="display:flex;flex-direction:column;gap:2rem;">
+
+        <!-- Razón 1 -->
+        <div style="display:flex;align-items:flex-start;gap:1rem;">
+          <div class="why-icon">
+            <svg class="w-6 h-6" style="color:#000;width:24px;height:24px;" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="color:#fff;font-size:1.4rem;font-weight:500;margin-bottom:0.5rem;">Ubicación Estratégica</h3>
+            <p style="color:#9ca3af;font-size:1.1rem;line-height:1.6;">
+              A solo 7 minutos del Aeropuerto Internacional de La Romana, con fácil acceso a las playas de
+              Bayahibe, Isla Catalina e Isla Saona.
+            </p>
+          </div>
+        </div>
+
+        <!-- Razón 2 -->
+        <div style="display:flex;align-items:flex-start;gap:1rem;">
+          <div class="why-icon">
+            <svg style="color:#000;width:24px;height:24px;" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="color:#fff;font-size:1.4rem;font-weight:500;margin-bottom:0.5rem;">Diseño de Clase Mundial</h3>
+            <p style="color:#9ca3af;font-size:1.1rem;line-height:1.6;">
+              Villas inspiradas en el minimalismo tropical, con techos altos, ventanales amplios y acabados de
+              primera calidad como porcelanato y roble brasileño.
+            </p>
+          </div>
+        </div>
+
+        <!-- Razón 3 -->
+        <div style="display:flex;align-items:flex-start;gap:1rem;">
+          <div class="why-icon">
+            <svg style="color:#000;width:24px;height:24px;" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="color:#fff;font-size:1.4rem;font-weight:500;margin-bottom:0.5rem;">Inversión Inteligente</h3>
+            <p style="color:#9ca3af;font-size:1.1rem;line-height:1.6;">
+              Con potencial de plusvalía y oportunidades de renta vacacional, Frailejón Village es ideal para
+              vivir o invertir.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 7: AMENIDADES
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;padding:5rem 1rem;margin-bottom:2.5rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:center;">
+
+      <!-- Lista amenidades -->
+      <div style="display:flex;flex-direction:column;gap:2rem;">
+        <h2 style="color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.2;">
+          Amenidades de Clase Mundial
+        </h2>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="check-item">
+            <div class="check-circle">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span style="color:#fff;font-size:1.1rem;font-weight:500;">Seguridad Integral 24/7</span>
+          </div>
+          <div class="check-item">
+            <div class="check-circle">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span style="color:#fff;font-size:1.1rem;font-weight:500;">Club Social y Deportivo</span>
+          </div>
+          <div class="check-item">
+            <div class="check-circle">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span style="color:#fff;font-size:1.1rem;font-weight:500;">Campos de Golf de Clase Mundial</span>
+          </div>
+          <div class="check-item">
+            <div class="check-circle">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span style="color:#fff;font-size:1.1rem;font-weight:500;">Restaurantes Gourmet</span>
+          </div>
+          <div class="check-item">
+            <div class="check-circle">
+              <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span style="color:#fff;font-size:1.1rem;font-weight:500;">Entorno Natural Exuberante</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Imagen amenidades -->
+      <div style="display:flex;justify-content:flex-end;">
+        <img src="https://www.lromanarealestate.com/frailejon/amenidadesfrailejon.avif"
+             alt="Casa moderna con piscina y arquitectura contemporánea"
+             style="width:100%;max-width:600px;height:600px;object-fit:cover;border-radius:0.5rem;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 8: MODELOS
+══════════════════════════════════════════════════════ -->
+<section id="modelos" style="background:#121212;padding:5rem 1rem;margin-bottom:3rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+
+    <div style="display:flex;justify-content:center;margin-bottom:2rem;">
+      <span style="background:#302413;border:1px solid #bee301;color:#fff;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:500;">
+        Modelos del proyecto
+      </span>
+    </div>
+
+    <h2 style="color:#fff;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:500;text-align:center;margin-bottom:4rem;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.4;">
+      Villas con estilos y configuraciones variadas que se adaptan a tus necesidades, priorizando elegancia y confort.
+    </h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
+
+      <!-- Card 1: Platinum -->
+      <div class="prop-card">
+        <div style="position:relative;">
+          <img src="https://www.lromanarealestate.com/home/frailejonplatinum.jpg" alt="Frailejón Golf Platinum" />
+          <div class="badge-sale"><span class="badge-accent">En venta</span></div>
+        </div>
+        <div style="padding:1.5rem 0 0.5rem;">
+          <p style="color:#fff;font-size:1.3rem;font-weight:600;margin-bottom:1rem;">
+            <span class="price-pill">USD $</span> 3,000 Para Reservar
+          </p>
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:500;margin-bottom:1rem;">Frailejón Golf Platinum</h3>
+          <div style="display:flex;align-items:center;gap:1rem;color:#9ca3af;font-size:0.875rem;">
+            <span>🏠 4</span>
+            <span>🛁 4</span>
+            <span>📐 376 m²</span>
+            <span>📍 La Romana</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Standard -->
+      <div class="prop-card">
+        <div style="position:relative;">
+          <img src="https://www.lromanarealestate.com/frailejon/standardgolf.avif" alt="Frailejón Standard Golf" />
+          <div class="badge-sale"><span class="badge-accent">En venta</span></div>
+        </div>
+        <div style="padding:1.5rem 0 0.5rem;">
+          <p style="color:#fff;font-size:1.3rem;font-weight:600;margin-bottom:1rem;">
+            <span class="price-pill">USD $</span> 3,000 Para Reservar
+          </p>
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:500;margin-bottom:1rem;">Frailejón Standard Golf</h3>
+          <div style="display:flex;align-items:center;gap:1rem;color:#9ca3af;font-size:0.875rem;">
+            <span>🏠 3</span>
+            <span>🛁 3</span>
+            <span>📐 250 m²</span>
+            <span>📍 La Romana</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Premium -->
+      <div class="prop-card">
+        <div style="position:relative;">
+          <img src="https://www.lromanarealestate.com/frailejon/golfpremuim.avif" alt="Frailejón Golf Premium" />
+          <div class="badge-sale"><span class="badge-accent">En venta</span></div>
+        </div>
+        <div style="padding:1.5rem 0 0.5rem;">
+          <p style="color:#fff;font-size:1.3rem;font-weight:600;margin-bottom:1rem;">
+            <span class="price-pill">USD $</span> 3,000 Para Reservar
+          </p>
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:500;margin-bottom:1rem;">Frailejón Golf Premium</h3>
+          <div style="display:flex;align-items:center;gap:1rem;color:#9ca3af;font-size:0.875rem;">
+            <span>🏠 3</span>
+            <span>🛁 3</span>
+            <span>📐 345 m²</span>
+            <span>📍 La Romana</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 9: ATRACTIVOS CERCA
+══════════════════════════════════════════════════════ -->
+<section style="background:#121212;padding:5rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <h2 style="color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:700;text-align:center;margin-bottom:3rem;">
+      Atractivos Cerca de ti
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.5rem;">
+
+      <div class="nearby-card">
+        <img src="https://www.lromanarealestate.com/frailejon/Captainkid.avif" alt="Capitan Kid Restaurant" />
+        <div class="nearby-overlay"></div>
+        <div class="nearby-info">
+          <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.25rem;">Capitan Kid</h3>
+          <p style="color:#e5e7eb;font-size:1rem;">Restaurante (a 15 minutos)</p>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <img src="https://www.lromanarealestate.com/frailejon/hiltonromana.avif" alt="Hotel Hilton" />
+        <div class="nearby-overlay"></div>
+        <div class="nearby-info">
+          <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.25rem;">Hotel Hilton</h3>
+          <p style="color:#e5e7eb;font-size:1rem;">Hotel (a 15 minutos)</p>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <img src="https://www.lromanarealestate.com/frailejon/avionfrailejon.avif" alt="Aeropuerto" />
+        <div class="nearby-overlay"></div>
+        <div class="nearby-info">
+          <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.25rem;">Aeropuerto</h3>
+          <p style="color:#e5e7eb;font-size:1rem;">Aeropuerto (a 5 minutos)</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 10: CONTACTO
+══════════════════════════════════════════════════════ -->
+<section id="contact" style="background:#121212;padding:5rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;">
+
+      <!-- Formulario lado izq -->
+      <div>
+        <h2 style="color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2;">
+          Agenda tu Visita a Frailejón Village
+        </h2>
+        <p style="color:#d1d5db;font-size:1.1rem;margin-bottom:2rem;line-height:1.6;">
+          Descubre en persona el lujo y la exclusividad que ofrecemos. Completa el formulario y programa una
+          cita con nuestro equipo.
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:0.75rem;color:#d1d5db;margin-bottom:2rem;">
+          <div><span style="color:#fff;font-weight:600;">Teléfono:</span> (829) 222-2484</div>
+          <div><span style="color:#fff;font-weight:600;">Correo Electrónico:</span> info@romanarealestate.com</div>
+          <div><span style="color:#fff;font-weight:600;">Dirección:</span> Reparto Torres Calle 4ta #5. La Romana. República Dominicana.</div>
+        </div>
+
+        <form style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+              <label style="display:block;color:#fff;font-weight:500;margin-bottom:0.5rem;">Nombre y Apellido</label>
+              <input type="text" class="form-input" placeholder="Mitchell" name="name" />
+            </div>
+            <div>
+              <label style="display:block;color:#fff;font-weight:500;margin-bottom:0.5rem;">Teléfono</label>
+              <input type="tel" class="form-input" placeholder="+123 456 789 00" name="phone" />
+            </div>
+          </div>
+          <div>
+            <label style="display:block;color:#fff;font-weight:500;margin-bottom:0.5rem;">Correo Electrónico</label>
+            <input type="email" class="form-input" placeholder="test@gmail.com" name="email" />
+          </div>
+          <div>
+            <label style="display:block;color:#fff;font-weight:500;margin-bottom:0.5rem;">Mensaje</label>
+            <textarea class="form-input" name="message" rows="4" placeholder="Explain it in details..." style="resize:none;border-radius:0.75rem;"></textarea>
+          </div>
+          <button type="submit"
+                  style="background:#bee301;color:#000;font-weight:500;padding:1rem 1.5rem;border:none;border-radius:9999px;cursor:pointer;font-size:1rem;width:100%;transition:background 0.2s;"
+                  onmouseover="this.style.background='#a8c900'" onmouseout="this.style.background='#bee301'">
+            Enviar mi mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Slider lado der -->
+      <div style="position:relative;min-height:600px;border-radius:0.5rem;overflow:hidden;">
+        <div id="sliderTrack" class="slider-track" style="height:100%;">
+          <div class="slider-slide">
+            <img src="https://www.lromanarealestate.com/frailejon/Captainkid.avif" alt="Vista interior 1" />
+          </div>
+          <div class="slider-slide">
+            <img src="https://www.lromanarealestate.com/frailejon/campogolffreile.avif" alt="Vista interior 2" />
+          </div>
+          <div class="slider-slide">
+            <img src="https://www.lromanarealestate.com/frailejon/standardgolf.avif" alt="Vista interior 3" />
+          </div>
+          <div class="slider-slide">
+            <img src="https://www.lromanarealestate.com/home/frailejonplatinum.jpg" alt="Vista interior 4" />
+          </div>
+          <div class="slider-slide">
+            <img src="https://www.lromanarealestate.com/frailejon/amenidadesfrailejon.avif" alt="Vista interior 5" />
+          </div>
+        </div>
+        <!-- Puntos de navegación -->
+        <div id="sliderDots" style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:0.5rem;">
+          <button class="slider-dot active" onclick="goToSlide(0)"></button>
+          <button class="slider-dot inactive" onclick="goToSlide(1)"></button>
+          <button class="slider-dot inactive" onclick="goToSlide(2)"></button>
+          <button class="slider-dot inactive" onclick="goToSlide(3)"></button>
+          <button class="slider-dot inactive" onclick="goToSlide(4)"></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer style="background:#030712;padding:4rem 1rem;">
+  <div class="containerl" style="padding-left:4rem;padding-right:4rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;">
+
+      <div>
+        <h3 style="color:#f9fafb;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;">Navegación</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><a href="/" style="color:#d1d5db;text-decoration:none;">Inicio</a></li>
+          <li><a href="/about" style="color:#d1d5db;text-decoration:none;">Nosotros</a></li>
+          <li><a href="https://propiedades.lromanarealestate.com/" target="_blank" rel="noopener noreferrer" style="color:#d1d5db;text-decoration:none;">Propiedades</a></li>
+          <li><a href="/contacto" style="color:#d1d5db;text-decoration:none;">Contacto</a></li>
+          <li><a href="/agentes" style="color:#d1d5db;text-decoration:none;">Agentes 360</a></li>
+          <li><a href="/politica-de-privacidad" style="color:#d1d5db;text-decoration:none;">Política de Privacidad</a></li>
+          <li><a href="/terminos-y-condiciones" style="color:#d1d5db;text-decoration:none;">Términos y Condiciones</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="color:#f9fafb;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;">Agentes 360</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><a href="/agentes" style="color:#d1d5db;text-decoration:none;">Freisy Carolina</a></li>
+          <li><a href="/agentes" style="color:#d1d5db;text-decoration:none;">Yuderkis Pilier</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="color:#f9fafb;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;">Proyectos</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><a href="/costamar" style="color:#d1d5db;text-decoration:none;">Costa Mar</a></li>
+          <li><a href="/stone-tower-3" style="color:#d1d5db;text-decoration:none;">Stone Tower 3</a></li>
+          <li><a href="/frailejonvillage" style="color:#d1d5db;text-decoration:none;">Frailejon Village</a></li>
+          <li><a href="https://propiedades.lromanarealestate.com/" target="_blank" rel="noopener noreferrer" style="color:#d1d5db;text-decoration:none;">Ver propiedades</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="margin-top:3rem;border-top:1px solid #1f2937;padding-top:2rem;">
+      <p style="color:#9ca3af;font-size:0.875rem;">© 2025 L' Romana Real Estate. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT – Slider automático
+══════════════════════════════════════════════════════ -->
+<script>
+  var currentSlide = 0;
+  var totalSlides = 5;
+
+  function goToSlide(index) {
+    currentSlide = index;
+    document.getElementById('sliderTrack').style.transform = 'translateX(-' + (index * 100) + '%)';
+    var dots = document.getElementById('sliderDots').querySelectorAll('.slider-dot');
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === index);
+      dot.classList.toggle('inactive', i !== index);
+    });
+  }
+
+  // Auto-avance cada 4 segundos
+  setInterval(function() {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }, 4000);
+</script>
+
+</body>
+</html>
