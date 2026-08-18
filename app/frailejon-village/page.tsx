@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react'
 
 const amenSliderImages = [
-  { src: '/sillasfrailejon.avif',  alt: 'Sillas Frailejón Village' },
-  { src: '/Campo%20de%20golf%201.jpeg',           alt: 'Campo de golf 1' },
-  { src: '/campo%20de%20golf%20soleado.jpg.jpeg', alt: 'Campo de golf soleado' },
-  { src: '/entrenamiento.jpg',                    alt: 'Área de entrenamiento' },
-  { src: '/recepcion.webp',                                      alt: 'Recepción' },
-  { src: '/atardecer%20sobre%20el%20campo%20de%20golf.jpg', alt: 'Atardecer sobre el campo de golf' },
-  { src: '/foto%20sobre%20el%20lago%202.jpg',              alt: 'Foto sobre el lago 2' },
+  { src: '/campo.jpg',                                       alt: 'Campo Frailejón Village' },
+  { src: '/Campo%20de%20golf%201.jpeg',                      alt: 'Campo de golf 1' },
+  { src: '/campos%20soleado.jpeg',                           alt: 'Campo de golf soleado' },
+  { src: '/entrenamiento.jpg',                               alt: 'Área de entrenamiento' },
+  { src: '/recepcion.webp',                                  alt: 'Recepción' },
+  { src: '/atardecer%20sobre%20el%20campo%20de%20golf.jpg',  alt: 'Atardecer sobre el campo de golf' },
+  { src: '/foto%20sobre%20el%20lago%202.jpg',                alt: 'Foto sobre el lago 2' },
 ]
 
 const sliderImages = [
