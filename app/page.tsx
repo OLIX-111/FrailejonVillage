@@ -23,6 +23,7 @@ export default function FrailejonVillagePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [amenSlide, setAmenSlide] = useState(0)
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
+  const [proyectosOpen, setProyectosOpen] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -98,7 +99,16 @@ export default function FrailejonVillagePage() {
               <img src="/logo.png" alt="L'Romana Real Estate" style={{ height:48, width:'auto', objectFit:'contain' }} />
             </a>
             <nav style={{ display:'flex', alignItems:'center', gap:'2rem', fontSize:'0.95rem' }}>
-              <span style={{ color:'#fff', cursor:'pointer' }}>Proyectos ▾</span>
+              <div style={{ position:'relative' }}>
+                <span style={{ color:'#fff', cursor:'pointer', userSelect:'none' }} onClick={() => setProyectosOpen(o => !o)}>Proyectos ▾</span>
+                {proyectosOpen && (
+                  <div style={{ position:'absolute', top:'calc(100% + 0.75rem)', left:0, background:'#1a1a1a', border:'1px solid #333', borderRadius:'0.5rem', minWidth:200, zIndex:100, overflow:'hidden' }}>
+                    <a href="/costamar" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Costa Mar</a>
+                    <a href="/frailejon-village" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Frailejón Village</a>
+                    <a href="/stone-tower-3" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Stone Tower III</a>
+                  </div>
+                )}
+              </div>
               <a href="https://propiedades.lromanarealestate.com/" style={{ color:'#fff', textDecoration:'none' }}>Propiedades</a>
               <a href="/agentes" style={{ color:'#fff', textDecoration:'none' }}>Agentes</a>
               <a href="/about" style={{ color:'#fff', textDecoration:'none' }}>Sobre Nosotros</a>
