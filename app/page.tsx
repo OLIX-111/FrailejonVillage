@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 
 const amenSliderImages = [
-  { src: '/campo.jpg',                                       alt: 'Campo Frailejón Village' },
+  { src: '/campo.jpg',                                       alt: 'Campo Stone Towers III' },
   { src: '/Campo%20de%20golf%201.jpeg',                      alt: 'Campo de golf 1' },
   { src: '/campos%20soleado.jpeg',                           alt: 'Campo de golf soleado' },
   { src: '/entrenamiento.jpg',                               alt: 'Área de entrenamiento' },
@@ -104,7 +104,7 @@ export default function FrailejonVillagePage() {
                 {proyectosOpen && (
                   <div style={{ position:'absolute', top:'calc(100% + 0.75rem)', left:0, background:'#1a1a1a', border:'1px solid #333', borderRadius:'0.5rem', minWidth:200, zIndex:100, overflow:'hidden' }}>
                     <a href="https://frailejon-ii.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Altos de Frailejón</a>
-                    <a href="https://frailejon-village.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Frailejón Village</a>
+                    <a href="https://frailejon-village.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ display:'block', padding:'0.75rem 1.25rem', color:'#fff', textDecoration:'none', fontSize:'0.95rem' }} onMouseOver={e => (e.currentTarget.style.background='#bee301', e.currentTarget.style.color='#000')} onMouseOut={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.color='#fff')}>Stone Towers III</a>
                   </div>
                 )}
               </div>
@@ -156,7 +156,7 @@ export default function FrailejonVillagePage() {
             de vida incomparable.
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/atardecer.jpg" alt="Frailejón Village villas con jardín tropical" onClick={() => open('/atardecer.jpg', 'Frailejón Village')} style={{ width:'100%', maxHeight:580, objectFit:'cover', borderRadius:'0.5rem', cursor:'zoom-in' }} />
+          <img src="/atardecer.jpg" alt="Stone Towers III villas con jardín tropical" onClick={() => open('/atardecer.jpg', 'Stone Towers III')} style={{ width:'100%', maxHeight:580, objectFit:'cover', borderRadius:'0.5rem', cursor:'zoom-in' }} />
         </div>
       </section>
 
@@ -168,7 +168,7 @@ export default function FrailejonVillagePage() {
               Un Refugio Natural en La Estancia Golf &amp; Country Club
             </h2>
             <p style={{ color:'#d1d5db', fontSize:'1.1rem', lineHeight:1.8, fontWeight:300, maxWidth:900 }}>
-              Ubicado en el corazón de la exclusiva comunidad de La Estancia, Frailejón Village ofrece un entorno
+              Ubicado en el corazón de la exclusiva comunidad de La Estancia, Stone Towers III ofrece un entorno
               que fusiona naturaleza y sofisticación. Rodeado por la exuberante vegetación de la región y con vistas
               panorámicas al majestuoso río Chavón, este destino es un santuario para quienes buscan equilibrio entre
               el lujo y la tranquilidad. La Estancia es más que un residencial, es una experiencia de vida que se
@@ -190,7 +190,7 @@ export default function FrailejonVillagePage() {
             Un Estilo de Vida Exclusivo con Conexión a Todo
           </h2>
           <p style={{ color:'#d1d5db', fontSize:'1.1rem', lineHeight:1.8, maxWidth:900 }}>
-            Frailejón Village goza de una ubicación privilegiada a solo minutos de algunos de los destinos más
+            Stone Towers III goza de una ubicación privilegiada a solo minutos de algunos de los destinos más
             emblemáticos del Caribe. A pocos minutos del Aeropuerto Internacional de La Romana, y con acceso a
             playas paradisíacas como Bayahibe e Isla Saona, los residentes pueden disfrutar de la brisa marina y
             arenas blancas en cualquier momento. Además, la cercanía con Casa de Campo y el icónico Altos de Chavón
@@ -206,14 +206,14 @@ export default function FrailejonVillagePage() {
           <div style={{ display:'flex', flexWrap:'wrap', alignItems:'center', gap:'3rem' }}>
             <div style={{ flex:1, minWidth:280 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/VILLAS.jpg" alt="Villas Frailejón Village vista nocturna" onClick={() => open('/VILLAS.jpg', 'Villas Frailejón Village')} style={{ width:'100%', height:500, objectFit:'cover', borderRadius:4, cursor:'zoom-in' }} />
+              <img src="/VILLAS.jpg" alt="Villas Stone Towers III vista nocturna" onClick={() => open('/VILLAS.jpg', 'Villas Stone Towers III')} style={{ width:'100%', height:500, objectFit:'cover', borderRadius:4, cursor:'zoom-in' }} />
             </div>
             <div style={{ flex:1, minWidth:280, color:'#fff' }}>
               <h2 style={{ fontSize:'clamp(1.8rem,4vw,3rem)', fontWeight:300, marginBottom:'2rem', lineHeight:1.2 }}>
                 Una Inversión que Crece Contigo
               </h2>
               <p style={{ color:'#d1d5db', fontSize:'1.1rem', lineHeight:1.8 }}>
-                Ubicado en el exclusivo Estancia Golf &amp; Country Club, Frailejón Village redefine el lujo en La
+                Ubicado en el exclusivo Estancia Golf &amp; Country Club, Stone Towers III redefine el lujo en La
                 Romana. Este proyecto residencial combina diseño minimalista tropical con espacios amplios y amenidades
                 premium para ofrecerte un estilo de vida inigualable en armonía con la naturaleza.
               </p>
@@ -228,17 +228,17 @@ export default function FrailejonVillagePage() {
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'3rem', alignItems:'start' }}>
             <div>
               <h2 style={{ color:'#fff', fontSize:'clamp(2rem,4vw,3rem)', fontWeight:600, marginBottom:'1.5rem', lineHeight:1.2 }}>
-                ¿Por Qué Elegir Frailejón Village?
+                ¿Por Qué Elegir Stone Towers III?
               </h2>
               <p style={{ color:'#9ca3af', fontSize:'1.2rem', lineHeight:1.6 }}>
-                Descubre las razones que hacen de Frailejón Village el lugar ideal para vivir o invertir.
+                Descubre las razones que hacen de Stone Towers III el lugar ideal para vivir o invertir.
               </p>
             </div>
             <div style={{ display:'flex', flexDirection:'column', gap:'2rem' }}>
               {[
                 { icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z', title: 'Ubicación Estratégica', desc: 'A solo 7 minutos del Aeropuerto Internacional de La Romana, con fácil acceso a las playas de Bayahibe, Isla Catalina e Isla Saona.' },
                 { icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z', title: 'Diseño de Clase Mundial', desc: 'Villas inspiradas en el minimalismo tropical, con techos altos, ventanales amplios y acabados de primera calidad como porcelanato y roble brasileño.' },
-                { icon: 'M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z', title: 'Inversión Inteligente', desc: 'Con potencial de plusvalía y oportunidades de renta vacacional, Frailejón Village es ideal para vivir o invertir.' },
+                { icon: 'M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z', title: 'Inversión Inteligente', desc: 'Con potencial de plusvalía y oportunidades de renta vacacional, Stone Towers III es ideal para vivir o invertir.' },
               ].map(({ icon, title, desc }) => (
                 <div key={title} style={{ display:'flex', alignItems:'flex-start', gap:'1rem' }}>
                   <div className="why-icon">
@@ -372,7 +372,7 @@ export default function FrailejonVillagePage() {
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'3rem' }}>
             <div>
               <h2 style={{ color:'#fff', fontSize:'clamp(2rem,4vw,3rem)', fontWeight:700, marginBottom:'1.5rem', lineHeight:1.2 }}>
-                Agenda tu Visita a Frailejón Village
+                Agenda tu Visita a Stone Towers III
               </h2>
               <p style={{ color:'#d1d5db', fontSize:'1.1rem', marginBottom:'2rem', lineHeight:1.6 }}>
                 Descubre en persona el lujo y la exclusividad que ofrecemos. Completa el formulario y programa una
