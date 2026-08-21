@@ -17,13 +17,6 @@ const agentes = [
     desc: 'Asesora inmobiliaria comprometida en encontrar la propiedad ideal para cada cliente.',
     foto: '/freisy.jpg',
   },
-  {
-    nombre: 'Isabel C. Restrepo',
-    rol: 'Agente Inmobiliario',
-    idiomas: ['Español', 'Inglés'],
-    desc: 'Experta en bienes raíces con un enfoque personalizado y atención al detalle.',
-    foto: '/isabel.jpg',
-  },
 ]
 
 export default function AgentesPage() {
@@ -40,7 +33,7 @@ export default function AgentesPage() {
         .tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid #444; color: #d1d5db; font-size: 0.85rem; }
         .agendar-btn { width: 100%; padding: 0.9rem; background: transparent; border: 1px solid #444; border-radius: 0.5rem; color: #fff; font-size: 1rem; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
         .agendar-btn:hover { background: #bee301; border-color: #bee301; color: #000; }
-        .foto-placeholder { width: 100%; height: 320px; background: #2a2a2a; display: flex; align-items: center; justify-content: center; }
+        .foto-placeholder { width: 100%; background: #2a2a2a; }
       `}</style>
 
       {/* HEADER */}
@@ -95,7 +88,7 @@ export default function AgentesPage() {
             <div key={a.nombre} className="agent-card">
               <div className="foto-placeholder">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={a.foto} alt={a.nombre} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                <img src={a.foto} alt={a.nombre} style={{ width: '100%', height: 'auto', display: 'block' }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
               </div>
               <div style={{ padding: '1.75rem' }}>
