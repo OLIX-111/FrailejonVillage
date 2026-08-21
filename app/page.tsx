@@ -93,7 +93,7 @@ export default function FrailejonVillagePage() {
       <header style={{ position:'sticky', top:0, width:'100%', zIndex:50, background:'#121212', borderBottom:'1px solid #222' }}>
         <div className="containerl" style={{ padding:'0 4rem' }}>
           <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'1.5rem 0' }}>
-            <a href="/">
+            <a href="https://lromanarealestate.com/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo.png" alt="L'Romana Real Estate" style={{ height:48, width:'auto', objectFit:'contain' }} />
             </a>
