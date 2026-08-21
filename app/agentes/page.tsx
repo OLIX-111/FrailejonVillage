@@ -58,7 +58,7 @@ export default function AgentesPage() {
               </div>
               <a href="https://propiedades.lromanarealestate.com/" style={{ color: '#fff', textDecoration: 'none' }}>Propiedades</a>
               <a href="/agentes" style={{ color: '#bee301', textDecoration: 'none' }}>Agentes</a>
-              <a href="/about" style={{ color: '#fff', textDecoration: 'none' }}>Sobre Nosotros</a>
+              <a href="https://www.lromanarealestate.com/about" style={{ color: '#fff', textDecoration: 'none' }}>Sobre Nosotros</a>
               <a href="/#contact" style={{ color: '#fff', textDecoration: 'none' }}>Contacto</a>
             </nav>
             <a href="/#contact" style={{ background: '#2563eb', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: '9999px', textDecoration: 'none', fontWeight: 500, fontSize: '0.95rem' }}>

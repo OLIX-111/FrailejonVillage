@@ -111,7 +111,7 @@ export default function FrailejonVillagePage() {
               </div>
               <a href="https://propiedades.lromanarealestate.com/" style={{ color:'#fff', textDecoration:'none' }}>Propiedades</a>
               <a href="/agentes" style={{ color:'#fff', textDecoration:'none' }}>Agentes</a>
-              <a href="/about" style={{ color:'#fff', textDecoration:'none' }}>Sobre Nosotros</a>
+              <a href="https://www.lromanarealestate.com/about" style={{ color:'#fff', textDecoration:'none' }}>Sobre Nosotros</a>
               <a href="https://propiedades.lromanarealestate.com/contactos" style={{ color:'#fff', textDecoration:'none' }}>Contacto</a>
             </nav>
             <a href="https://propiedades.lromanarealestate.com/" target="_blank" rel="noopener noreferrer"
